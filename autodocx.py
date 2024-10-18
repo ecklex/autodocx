@@ -4,59 +4,60 @@ def docx_to_xml(docx_path, xml_path):
     doc = Document(docx_path)
     xml_content = ""
 
-    # Built-in Styles to convert
+    # Styles to convert
     for paragraph in doc.paragraphs:
         style_name = paragraph.style.name
-        text = paragraph.text
-        
-        # title
+        paragraph_xml = ""  # Initialize for the paragraph
+
+        # Iterate over runs within the paragraph to check for inline formatting
+        for run in paragraph.runs:
+            run_text = run.text
+            
+            # Apply italic formatting (check both direct italic attribute and style-based character formatting)
+            if run.italic or (run.style and 'italic' in run.style.name.lower()):
+                run_text = "<i>{}</i>".format(run_text)
+            if run.style.name == 'Your_Character_Formatting_Style_Name':
+                run_text = "<i>{}</i>".format(run_text)
+
+                
+            if run.font.italic == True:
+                run_text = "<i>{}</i>".format(run_text)
+            
+            # Apply bold formatting
+            if run.bold:
+                run_text = "<b>{}</b>".format(run_text)
+
+            # Add run text to paragraph XML content
+            paragraph_xml += run_text
+
+        # Now check the style of the paragraph and wrap the entire content. Enter your style names in "style_name == 'Your_Style_Name'".
         if style_name == 'Title':
-            xml_content += "<title>{}</title>".format(text)
-
-        # subtitle
+            xml_content += "<title>{}</title>".format(paragraph_xml)
         elif style_name == 'Subtitle':
-            xml_content += "<subtitle>{}</subtitle>".format(text)
-
-        # headings
-        elif style_name.startswith('Heading'):
-            level = style_name.split()[1]
-            xml_content += "<h{}>{}</h{}>".format(level, text, level)
-
-        # normal text
-        elif style_name == 'Normal':
-            xml_content += "<p>{}</p>".format(text)
-
-    # custom styles to convert. enter the exact style name as it appears in the docx file
-
-        # List Bullet (unordered list)
+            xml_content += "<subtitle>{}</subtitle>".format(paragraph_xml)
+        elif style_name == 'H1':
+            xml_content += "<h1>{}</h1>".format(paragraph_xml)
+        elif style_name == 'Paragraph':
+            xml_content += "<p>{}</p>".format(paragraph_xml)
         elif style_name == 'ListBullet':
-            xml_content += "<ul><li>{}</li></ul>".format(text)
-
-        # List Number
+            xml_content += "<ul><li>{}</li></ul>".format(paragraph_xml)
         elif style_name == 'Listenabsatz1':
-            xml_content += "<ol><li>{}</li></ol>".format(text)
+            xml_content += "<ol><li>{}</li></ol>".format(paragraph_xml)
+            
 
-        # add more custom styles here  
 
-        # bold text
-        for run in paragraph.runs:
-            if run.style.name == 'fett':
-                xml_content = xml_content.replace(run.text, "<b>{}</b>".format(run.text))
+    # Replace special characters
+    xml_content = xml_content.replace("&", "&amp;")
 
-        # italic text (for italic text, search for custom style, due to a word bug, italic itself is not recognized)
-        for run in paragraph.runs:
-            if run.style.name == 'kursiv':
-                xml_content = xml_content.replace(run.text, "<i>{}</i>".format(run.text))
-
+    # delete empty lines
+    xml_content = xml_content.replace("<p></p>", "")
 
     # save xml file
     with open(xml_path, "w") as xml_file:
-        xml_file.write("<document>{}</document>".format(xml_content))
+        xml_file.write("<?xml version='1.0' encoding='UTF-8'?>\n")
+        xml_file.write("<?xml-stylesheet type='text/css' href='/Path_to_your/print.css'?>\n")
+        xml_file.write("<document xml:lang='de'>{}</document>".format(xml_content))
 
 # Replace 'input.docx' with the path to your input.docx file
 # Replace 'output.xml' with the path where you want to save the XML file
 docx_to_xml('input.docx', 'output.xml')
-
-# some script to clean the lists in the xml file
-exec(open('path/to/the/repository/autodocx/subprocesses/clean_lists.py').read())
-exit()
