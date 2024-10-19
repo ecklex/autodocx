@@ -11,10 +11,14 @@ This project is a non-professional project, using the AI Github-Copilot to compl
 This script is tested in an Windows 10 WSL Environment, which is the Linux Kernel running on Ubuntu ... Running on native Linux Ubuntu should be no problem. Other Unix-Environment should also work, although it is not tested. No testing nor installation on native Windows intended. 
 
 ## How to use (so far)
-1. Implement file path in the autodocx.py to where you have the docx. 
+1. Implement file path in the autodocx.py to where you have the input.docx. 
 2. Implement file path in the autodocx.py to where you want to save the output.
 3. Implement those paths to the clean_lists.py in the subprocess directory
 4. Run.
+
+Remember: To convert the .docx-file correctly, you need to format the Text with formatting templates and insert the template names into the right places in the script.
+
+Note: Due to the on going process, the autodocx.py script does not match the input.docx provided all the time. I try to keep up. This means, that it could be possible, that the input.docx in this repository needs to be changed in order to run the script right away. 
 
 ## Troubleshooting
 ### single styles don´t get converted
