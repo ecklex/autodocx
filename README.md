@@ -6,8 +6,14 @@ a word-to-xml-to-print transformation project
 
 Feedback is highly appreciated.
 
+### subprocess
+There is a clean_lists.py file in the subprocess directory. It is used to solve a problem with the list-transformation. It will be unnecessary in the future.
+
+### printCSS
+In order to style your XML, you can use CSS or, more specifically for the printing and book publishing process, PrintCSS. You'll find a CSS file in the directory. Just implement it's path to your XML file. It is then possible to print your XML styled via a browser (note, that different browsers act differently with the style information, some may not work on specific browsers at all).
+
 ## Requirements
-This script is tested in an Windows 10 WSL Environment, which is the Linux Kernel running on Ubuntu ... Running on native Linux Ubuntu should be no problem. Runs on Mac
+This script is tested in an Windows 10 WSL Environment, which is the Linux Kernel running on Ubuntu ... Running on native Linux Ubuntu should be no problem. Runs on MacOS Sonoma 14.7 as well.
 
 ## How to use (so far)
 1. Implement file path in the autodocx.py to where you have the input.docx. 
@@ -17,7 +23,7 @@ This script is tested in an Windows 10 WSL Environment, which is the Linux Kerne
 
 Remember: To convert the .docx-file correctly, you need to format the Text with formatting templates and insert the template names into the right places in the script.
 
-Note: Due to the on going process, the autodocx.py script does not match the input.docx provided all the time. I try to keep up. This means, that it could be possible, that the input.docx in this repository needs to be changed in order to run the script right away. 
+Note: Due to the on going process, the autodocx.py script may not match the input.docx provided all the time. I try to keep up. This means, that it could be possible, that the input.docx in this repository needs to be changed in order to run the script right away. 
 
 ## Troubleshooting
 ### single styles don´t get converted
