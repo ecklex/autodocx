@@ -16,7 +16,7 @@ def docx_to_xml(docx_path, xml_path):
             # Apply italic formatting (check both direct italic attribute and style-based character formatting)
             if run.italic or (run.style and 'italic' in run.style.name.lower()):
                 run_text = "<i>{}</i>".format(run_text)
-            if run.style.name == 'Your_Character_Formatting_Style_Name':
+            if run.style.name == 'Standard kursiv2':
                 run_text = "<i>{}</i>".format(run_text)
 
                 
@@ -30,14 +30,14 @@ def docx_to_xml(docx_path, xml_path):
             # Add run text to paragraph XML content
             paragraph_xml += run_text
 
-        # Now check the style of the paragraph and wrap the entire content. Enter your style names in "style_name == 'Your_Style_Name'".
-        if style_name == 'Title':
+        # Now check the style of the paragraph and wrap the entire content. Enter your style names if needed.
+        if style_name == 'Titel':
             xml_content += "<title>{}</title>".format(paragraph_xml)
-        elif style_name == 'Subtitle':
+        elif style_name == 'Untertitel':
             xml_content += "<subtitle>{}</subtitle>".format(paragraph_xml)
-        elif style_name == 'H1':
+        elif style_name == 'Überschrift 1':
             xml_content += "<h1>{}</h1>".format(paragraph_xml)
-        elif style_name == 'Paragraph':
+        elif style_name == 'Standard':
             xml_content += "<p>{}</p>".format(paragraph_xml)
         elif style_name == 'ListBullet':
             xml_content += "<ul><li>{}</li></ul>".format(paragraph_xml)
