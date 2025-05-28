@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<impressum>
+    <wissenschaftlicher-beirat>
+        <mitglied>Albert Einstein</mitglied>
+        <mitglied>Hermine Granger</mitglied>
+        <mitglied>Eowyn</mitglied>
+        <mitglied>Arwen</mitglied>
+    </wissenschaftlicher-beirat>
+    <produktionsdaten>
+        <reihe>Kluge Bücher</reihe>
+        <umschlaggestaltung>Zelda</umschlaggestaltung>
+        <umschlagmotiv>Pablo Picasso</umschlagmotiv>
+        <redaktion>Link</redaktion>
+        <layout-und-satz>Biggoron</layout-und-satz>
+        <printed-in>Germany</printed-in>
+        <druck-und-bindung>Diamantendruck</druck-und-bindung>
+    </produktionsdaten>
+    <buchdaten>
+        <auflage>Erste Auflage, 2025</auflage>
+        <isbn>
+            <print>978-3-XXXX-XXXX-X</print>
+            <epub>978-3-XXXX-XXXX-X</epub>
+        </isbn>
+        <copyright>© 2025 Spaß-Verlag</copyright>
+        <rechte>Alle Rechte vorbehalten</rechte>
+    </buchdaten>
+</impressum>
